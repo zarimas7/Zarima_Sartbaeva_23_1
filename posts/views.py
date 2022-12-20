@@ -1,20 +1,25 @@
 from django.shortcuts import render
-from posts.models import Post, Product
+from .models import Product, Review
 # Create your views here.
 
 def main_view(request):
     return render(request, 'layouts/index.html')
 
-def posts_view(request):
-    if request.method == 'GET':
-        posts = Post.objects.all()
-
-        return render(request, 'posts/posts.html', context={'posts':posts})
 
 def products_view(request):
     return render(request, 'products/products.html', context={'products': Product.objects.all()})
 
 
+def product_detail_view(request, id):
+    if request.method =='GET':
+        product = Product.objects.get(id=id)
+
+        context = {
+            'product': product,
+            'reviews': Review.objects.filter(product=product)
+        }
+
+        return render(request, 'products/detail.html', context=context)
 
 
 

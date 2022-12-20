@@ -20,7 +20,7 @@ from posts.views import *
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_view),
-    # path('posts/', posts_view)
-    path('products/', products_view)
+    path('products/', products_view),
+    path('products/<int:id>/', product_detail_view)
 ]
 
