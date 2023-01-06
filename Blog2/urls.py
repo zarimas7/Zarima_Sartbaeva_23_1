@@ -23,6 +23,10 @@ from users.views import login_view, logout_view, register_view
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', main_view),
+    path('products/', ProductsCBV.as_view()),
+    path('products/<int:id>/', ProductDetailCBV.as_view()),
+    path('products/create/', ProductsCreateCBV.as_view()),
+    path('categories/', CategoriesCBV.as_view()),
     path('products/', products_view),
     path('products/<int:id>/', product_detail_view),
     path('products/create/', product_create_view),
